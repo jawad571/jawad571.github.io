@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="solid_color.png" type="image/png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <title id="page_title">Your Resume</title>
+  <style>
+    /* Add custom styles here */
+    .favicon-logo {
+      border-radius: 50%;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <!-- Navigation Bar -->
+  <nav class="bg-blue-500 p-4 text-white fixed w-full top-0">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 id='name' class="text-2xl font-bold">Your Name</h1>
+      <ul class="flex space-x-4">
+        <li><a href="#" class="hover:text-gray-300">Home</a></li>
+        <li><a href="#education" class="hover:text-gray-300">Education</a></li>
+        <li><a href="#experience" class="hover:text-gray-300">Experience</a></li>
+        <li><a href="#projects" class="hover:text-gray-300">Projects</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="text-center py-4 pt-20">
+    <h1 id='title' class="text-3xl font-bold">Your Name</h1>
+    <p id = 'contact' class="text-sm">Web Developer</p>
+    <p id = 'linkedin' class="text-sm">Web Developer</p>
+    <p id="github" class="text-sm">Web Developer</p>
+  </header>
+  
+  <!-- Main Content -->
+  <div class="container mx-auto mt-2 p-4">
+
+    <!-- Education Section -->
+    <section id="education" class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Education</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Dynamically Generate Content -->
+        <script src="resume-data.js"></script>
+        <script>
+            // populate data
+            document.getElementById('page_title').innerText = name
+            document.getElementById('name').innerText = name
+            document.getElementById('title').innerText = title
+            document.getElementById('contact').innerText = email + '\n' + phone
+            document.getElementById('linkedin').innerHTML = `<a href="${linkedin}" class="text-blue-500" target="_blank">Linkedin</a>`
+            document.getElementById('github').innerHTML = `<a href="${github}" class="text-blue-500" target="_blank">Github</a>`
+          document.addEventListener('DOMContentLoaded', function () {
+            const educationSection = document.getElementById('education');
+            const educationData = resumeData.education;
+
+            educationData.forEach(edu => {
+              const educationItem = document.createElement('div');
+              educationItem.className = 'bg-white p-4 rounded shadow mb-4';
+              educationItem.innerHTML = `
+                <h3 class="text-lg font-medium">${edu.degree}</h3>
+                <p class="text-gray-600">${edu.university} | ${edu.graduationYear}</p>
+                <ul class="list-disc ml-6">
+                  ${edu.description.map(res => `<li>${res}</li>`).join('')}
+                </ul>
+              `;
+              educationSection.appendChild(educationItem);
+            });
+          });
+        </script>
+      </div>
+    </section>
+
+    <!-- Work Experience Section -->
+    <section id="experience" class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Work Experience</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Dynamically Generate Content -->
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            const experienceSection = document.getElementById('experience');
+            const experienceData = resumeData.experience;
+
+            experienceData.forEach(exp => {
+              const experienceItem = document.createElement('div');
+              experienceItem.className = 'bg-white p-4 rounded shadow mb-4';
+              experienceItem.innerHTML = `
+                <h3 class="text-lg font-medium">${exp.title}</h3>
+                <p class="text-gray-600">${exp.company} | ${exp.startDate} - ${exp.endDate}</p>
+                <ul class="list-disc ml-6">
+                  ${exp.responsibilities.map(res => `<li>${res}</li>`).join('')}
+                </ul>
+              `;
+              experienceSection.appendChild(experienceItem);
+            });
+          });
+        </script>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="text-2xl font-semibold mb-4">Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4"> <!-- Adjusted gap to 4 -->
+        <!-- Dynamically Generate Content -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+            const projectsSection = document.getElementById('projects');
+            const projectsData = resumeData.projects;
+    
+            projectsData.forEach(project => {
+                const projectItem = document.createElement('div');
+                projectItem.className = 'bg-white p-4 rounded shadow mb-4';
+                projectItem.innerHTML = `
+                <h3 class="text-lg font-medium">${project.title}</h3>
+                <p class="text-gray-600">${project.description}</p>
+                `;
+                projectsSection.appendChild(projectItem);
+            });
+            });
+        </script>
+        </div>
+    </section>
+  
+
+  </div>
+
+</body>
+</html>
