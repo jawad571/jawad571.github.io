@@ -73,14 +73,49 @@ const resumeData = {
         ]
       },
     ],
-    "projects": [
+    "volunteerWork": [
       {
-        "title": "Project 1",
-        "description": "Description of Project 1."
+        "title": "Research Intern",
+        "company": "YOUTH CENTER FOR RESEARCH (YCR)",
+        "startDate": "Jun 2019",
+        "endDate": "Sept 2019",
+        "responsibilities": [
+          "Surveyed whether the curriculum followed by 5 major universities of Pakistan includes focus on sustainability.",
+          "Suggested evaluation methods to gauge whether the future professionals are well informed about sustainable practices."
+        ]
       },
       {
-        "title": "Project 2",
-        "description": "Description of Project 2."
+        "title": "Teaching Volunteer",
+        "company": "ROBINHOOD ARMY (RHA)",
+        "startDate": "Jun 2019",
+        "endDate": "Jul 2019",
+        "responsibilities": [
+          "Taught science subjects to a class of 15 students under 12 years of age.",
+          "Instilled the interest of mathematics, physics, and astronomy in the students, sparking their curiosity."
+        ]
+      },
+      {
+        "title": "Volunteer",
+        "company": "SINDH INSTITUTE OF UROLOGY AND TRANSPLANTATION (SIUT)",
+        "startDate": "Dec 2015",
+        "endDate": "Jan 2016",
+        "responsibilities": [
+          "Handled the patient complaints in the waiting room and presented possible solutions to my group leader.",
+          "Responsible for giving direction to the newcomers in the hospital."
+        ]
+      }      
+    ],
+    "projects": [
+      {
+        "title": "Volunteer and Final Year Project Member",
+        "company": "ROBINHOOD ARMY (RHA) & IBA KARACHI",
+        "startDate": "Aug 2021",
+        "endDate": "Jun 2022",
+        "responsibilities": [
+          "Developed 3 client-side and 1 server-side applications to automate leftover food distribution process.",
+          "Developed a lightweight application to reduce cost for the NGO.",
+          "Integrated sockets to ensure that users receive real-time updates."
+        ]
       }
     ]
   }

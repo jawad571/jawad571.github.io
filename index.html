@@ -24,6 +24,7 @@
         <li><a href="#" class="hover:text-gray-300">Home</a></li>
         <li><a href="#education" class="hover:text-gray-300">Education</a></li>
         <li><a href="#experience" class="hover:text-gray-300">Experience</a></li>
+        <li><a href="#volunteerWork" class="hover:text-gray-300">Volunteer Work</a></li>
         <li><a href="#projects" class="hover:text-gray-300">Projects</a></li>
       </ul>
     </div>
@@ -102,28 +103,58 @@
       </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2 class="text-2xl font-semibold mb-4">Projects</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4"> <!-- Adjusted gap to 4 -->
+    <!-- Volunteer Work Section -->
+    <section id="volunteerWork" class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Volunteer Work</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Dynamically Generate Content -->
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
+          document.addEventListener('DOMContentLoaded', function () {
+            const volunteerWorkSection = document.getElementById('volunteerWork');
+            const volunteerWorkData = resumeData.volunteerWork;
+
+            volunteerWorkData.forEach(exp => {
+              const volunteerWorkItem = document.createElement('div');
+              volunteerWorkItem.className = 'bg-white p-4 rounded shadow mb-4';
+              volunteerWorkItem.innerHTML = `
+                <h3 class="text-lg font-medium">${exp.title}</h3>
+                <p class="text-gray-600">${exp.company} | ${exp.startDate} - ${exp.endDate}</p>
+                <ul class="list-disc ml-6">
+                  ${exp.responsibilities.map(res => `<li>${res}</li>`).join('')}
+                </ul>
+              `;
+              volunteerWorkSection.appendChild(volunteerWorkItem);
+            });
+          });
+        </script>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Dynamically Generate Content -->
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
             const projectsSection = document.getElementById('projects');
             const projectsData = resumeData.projects;
-    
-            projectsData.forEach(project => {
-                const projectItem = document.createElement('div');
-                projectItem.className = 'bg-white p-4 rounded shadow mb-4';
-                projectItem.innerHTML = `
-                <h3 class="text-lg font-medium">${project.title}</h3>
-                <p class="text-gray-600">${project.description}</p>
-                `;
-                projectsSection.appendChild(projectItem);
+
+            projectsData.forEach(exp => {
+              const projectsItem = document.createElement('div');
+              projectsItem.className = 'bg-white p-4 rounded shadow mb-4';
+              projectsItem.innerHTML = `
+                <h3 class="text-lg font-medium">${exp.title}</h3>
+                <p class="text-gray-600">${exp.company} | ${exp.startDate} - ${exp.endDate}</p>
+                <ul class="list-disc ml-6">
+                  ${exp.responsibilities.map(res => `<li>${res}</li>`).join('')}
+                </ul>
+              `;
+              projectsSection.appendChild(projectsItem);
             });
-            });
+          });
         </script>
-        </div>
+      </div>
     </section>
   
 
