@@ -129,5 +129,66 @@ const resumeData = {
           "Integrated sockets to ensure that users receive real-time updates."
         ]
       }
-    ]
-  }
+    ],
+    "honorsAndAwards": [
+      {
+        "title": "Science and Engineering International UG Merit Scholarship",
+        "company": "University of Leicester",
+        "startDate": "2023",
+        "endDate": "2023",
+        "responsibilities": []
+      },
+      {
+        "title": "Dean’s List",
+        "company": "IBA",
+        "startDate": "2022",
+        "endDate": "2022",
+        "responsibilities": []
+      },
+      {
+        "title": "100 percent merit scholarship",
+        "company": "Sindh Endowment",
+        "startDate": "2020",
+        "endDate": "2020",
+        "responsibilities": []
+      },
+      {
+        "title": "100 percent merit scholarship",
+        "company": "Whales College",
+        "startDate": "2018",
+        "endDate": "2018",
+        "responsibilities": []
+      },
+      {
+        "title": "Delivered Opening Address for Freshers",
+        "company": "Whales College",
+        "startDate": "2018",
+        "endDate": "2018",
+        "responsibilities": []
+      },
+      {
+        "title": "1st position",
+        "company": "Speech competition",
+        "startDate": "2017",
+        "endDate": "2017",
+        "responsibilities": []
+      },
+      {
+        "title": "Valedictorian",
+        "company": "Shahwilayat Public School",
+        "startDate": "2016",
+        "endDate": "2016",
+        "responsibilities": []
+      }
+    ]    
+}
+
+console.log(JSON.stringify({
+  "name":name,
+  "title": title,
+  "email":email,
+  "phone": phone,
+  "linkedin": linkedin,
+  "github": github,
+  "resumeData": resumeData
+}))
