@@ -107,7 +107,19 @@ const resumeData = {
     ],
     "projects": [
       {
-        "title": "Volunteer and Final Year Project Member",
+        "title": "Distributed Private Cloud",
+        "company": "University of Leicester",
+        "startDate": "Oct 2023",
+        "endDate": "Dec 2023",
+        "responsibilities": [
+          "Designed architecture for a private cloud that offers Availability and Partition tolerance.",
+          "Implementation using Kubernetes on virtual machines provisioned and managed via Vagrant.",
+          "Connected redis for to the application pods to create a shared state",
+          "Deployed a whiteboard web application on the cloud to offer eventual consistency.",
+        ]
+      },
+      {
+        "title": "Leftover Food Delivery Application",
         "company": "ROBINHOOD ARMY (RHA) & IBA KARACHI",
         "startDate": "Aug 2021",
         "endDate": "Jun 2022",
