@@ -12,14 +12,28 @@
       border-radius: 50%;
       overflow: hidden;
     }
-  </style>
+    .container {
+      display: flex; /* Use flexbox layout */
+      /* max-width: 20%; */
+      margin: auto; /* Center the container horizontally */
+    }
+    .column {
+      flex: 1; /* Make each column flexible */
+    }
+    .content {
+      margin: 0 10px; /* Add some spacing between content and container edges */
+    }
+    .text-2xl {
+      color:darkgreen;
+    }
+</style>
 </head>
 <body class="bg-gray-100 font-sans">
 
   <!-- Navigation Bar -->
   <nav class="bg-blue-500 p-4 text-white fixed w-full top-0">
     <div class="container mx-auto flex justify-between items-center">
-      <h1 id='name' class="text-2xl font-bold">Your Name</h1>
+      <h1 id='name' class="text-2xl font-bold" style="color:white">Your Name</h1>
       <ul id="menu" class="flex space-x-4">
         <li><a href="#" class="hover:text-gray-300">Home</a></li>
         <script>
@@ -55,39 +69,41 @@
   <!-- Main Content -->
   <div class="container mx-auto mt-2 p-4">
 
+    <div class="column">
+      <div class="content">
+
     <!-- About Me Section -->
-<section id="aboutMe" class="mb-8">
-  <h2 class="text-2xl font-semibold mb-4">About Me</h2>
-  <p class="text-gray-600">
-    Pursuing an MSc in Advanced Computer Science at the University of Leicester. An adaptive individual who has assumed diverse roles in the industry. Professional journey includes over 1.5 years of experience as a software engineer, and driven by a strong ambition to tackle significant technological challenges in the future. Apart from that, worked with NGOs in several domains including and not limited to health care and education.
-  </p>
-  <h3 class="text-lg font-medium mt-4">Skills</h3>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <div>
-      <h4 class="text-md font-semibold">Technical</h4>
-      <ul class="list-disc ml-6 text-gray-600">
-        <li>Proficient in the development and upkeep of frontend and backend applications utilizing JavaScript (Angular and Node).</li>
-        <li>Expertise in crafting Data Engineering pipelines through Python.</li>
-        <li>Seamlessly connecting web applications to both SQL (MySQL and PostgreSQL) and NoSQL (Mongo) databases.</li>
-        <li>Adept in data scraping and third-party API integration.</li>
-      </ul>
-    </div>
-    <div>
-      <h4 class="text-md font-semibold">Soft Skills</h4>
-      <ul class="list-disc ml-6 text-gray-600">
-        <li>Extensive experience in debates, honing the skill of engaging with a broad audience simultaneously.</li>
-        <li>Consistent client interactions cultivating strong negotiation and customer relationship abilities.</li>
-        <li>Valuable teamwork qualities fostered through collaboration within diverse teams in software development, stage performances, and sports.</li>
-      </ul>
-    </div>
-  </div>
-  <h3 class="text-lg font-medium mt-4">Language</h3>
-  <p class="text-gray-600">English, Urdu.</p>
-  <h3 class="text-lg font-medium mt-4">Interests</h3>
-  <p class="text-gray-600">
-    Dedicated to championing automation to liberate individuals from repetitive duties and empower their journey towards self-actualization. Enthusiastic about poetry and arts, with a particular focus on existentialism, as a means to explore profound aspects of human existence and philosophy.
-  </p>
-</section>
+    <section id="aboutMe" class="mb-8">
+      <h2 class="text-2xl font-semibold mb-4">About Me</h2>
+      <p class="text-gray-600">
+        Pursuing an MSc in Advanced Computer Science at the University of Leicester. An adaptive individual who has assumed diverse roles in the industry. Professional journey includes over 1.5 years of experience as a software engineer, and driven by a strong ambition to tackle significant technological challenges in the future. Apart from that, worked with NGOs in several domains including and not limited to health care and education.
+      </p>
+      <h3 class="text-lg font-medium mt-4">Skills</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <h4 class="text-md font-semibold">Technical</h4>
+          <ul class="list-disc ml-6 text-gray-600">
+            <li>Proficient in the development and upkeep of frontend and backend applications utilizing JavaScript (Angular and Node).</li>
+            <li>Expertise in crafting Data Engineering pipelines through Python.</li>
+            <li>Seamlessly connecting web applications to both SQL (MySQL and PostgreSQL) and NoSQL (Mongo) databases.</li>
+            <li>Adept in data scraping and third-party API integration.</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-md font-semibold">Soft Skills</h4>
+          <ul class="list-disc ml-6 text-gray-600">
+            <li>Extensive experience in debates, honing the skill of engaging with a broad audience simultaneously.</li>
+            <li>Consistent client interactions cultivating strong negotiation and customer relationship abilities.</li>
+            <li>Valuable teamwork qualities fostered through collaboration within diverse teams in software development, stage performances, and sports.</li>
+          </ul>
+        </div>
+      </div>
+      <h3 class="text-lg font-medium mt-4">Interests</h3>
+      <p class="text-gray-600">
+        Dedicated to championing automation to liberate individuals from repetitive duties and empower their journey towards self-actualization. Enthusiastic about poetry and arts, with a particular focus on existentialism, as a means to explore profound aspects of human existence and philosophy.
+      </p>
+    </section>
+
 
     <!-- Education Section -->
     <section id="education" class="mb-8">
@@ -124,32 +140,32 @@
       </div>
     </section>
 
-    <!-- Work Experience Section -->
-    <section id="experience" class="mb-8">
-      <h2 class="text-2xl font-semibold mb-4">Work Experience</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Dynamically Generate Content -->
-        <script>
-          document.addEventListener('DOMContentLoaded', function () {
-            const experienceSection = document.getElementById('experience');
-            const experienceData = resumeData.experience;
-
-            experienceData.forEach(exp => {
-              const experienceItem = document.createElement('div');
-              experienceItem.className = 'bg-white p-4 rounded shadow mb-4';
-              experienceItem.innerHTML = `
-                <h3 class="text-lg font-medium">${exp.title}</h3>
-                <p class="text-gray-600">${exp.company} | ${exp.startDate} - ${exp.endDate}</p>
-                <ul class="list-disc ml-6">
-                  ${exp.responsibilities.map(res => `<li>${res}</li>`).join('')}
-                </ul>
-              `;
-              experienceSection.appendChild(experienceItem);
-            });
-          });
-        </script>
-      </div>
-    </section>
+          <!-- honorsAndAwards Section -->
+          <section id="honorsAndAwards" class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Honors and Awards</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Dynamically Generate Content -->
+              <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                  const honorsAndAwardsSection = document.getElementById('honorsAndAwards');
+                  const honorsAndAwardsData = resumeData.honorsAndAwards;
+      
+                  honorsAndAwardsData.forEach(exp => {
+                    const honorsAndAwardsItem = document.createElement('div');
+                    honorsAndAwardsItem.className = 'bg-white p-4 rounded shadow mb-4';
+                    honorsAndAwardsItem.innerHTML = `
+                      <h3 class="text-lg font-medium">${exp.title}</h3>
+                      <p class="text-gray-600">${exp.company} | ${exp.startDate} - ${exp.endDate}</p>
+                      <ul class="list-disc ml-6">
+                        ${exp.responsibilities.map(res => `<li>${res}</li>`).join('')}
+                      </ul>
+                    `;
+                    honorsAndAwardsSection.appendChild(honorsAndAwardsItem);
+                  });
+                });
+              </script>
+            </div>
+          </section>  
 
     <!-- Volunteer Work Section -->
     <section id="volunteerWork" class="mb-8">
@@ -177,6 +193,10 @@
         </script>
       </div>
     </section>
+  </div>
+  </div>
+  <div class="column">
+    <div class="content">
 
     <!-- Projects Section -->
     <section id="projects" class="mb-8">
@@ -205,32 +225,36 @@
       </div>
     </section>
   
-      <!-- honorsAndAwards Section -->
-      <section id="honorsAndAwards" class="mb-8">
-        <h2 class="text-2xl font-semibold mb-4">Honors and Awards</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Dynamically Generate Content -->
-          <script>
-            document.addEventListener('DOMContentLoaded', function () {
-              const honorsAndAwardsSection = document.getElementById('honorsAndAwards');
-              const honorsAndAwardsData = resumeData.honorsAndAwards;
-  
-              honorsAndAwardsData.forEach(exp => {
-                const honorsAndAwardsItem = document.createElement('div');
-                honorsAndAwardsItem.className = 'bg-white p-4 rounded shadow mb-4';
-                honorsAndAwardsItem.innerHTML = `
-                  <h3 class="text-lg font-medium">${exp.title}</h3>
-                  <p class="text-gray-600">${exp.company} | ${exp.startDate} - ${exp.endDate}</p>
-                  <ul class="list-disc ml-6">
-                    ${exp.responsibilities.map(res => `<li>${res}</li>`).join('')}
-                  </ul>
-                `;
-                honorsAndAwardsSection.appendChild(honorsAndAwardsItem);
+        <!-- Work Experience Section -->
+        <section id="experience" class="mb-8">
+          <h2 class="text-2xl font-semibold mb-4">Work Experience</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Dynamically Generate Content -->
+            <script>
+              document.addEventListener('DOMContentLoaded', function () {
+                const experienceSection = document.getElementById('experience');
+                const experienceData = resumeData.experience;
+    
+                experienceData.forEach(exp => {
+                  const experienceItem = document.createElement('div');
+                  experienceItem.className = 'bg-white p-4 rounded shadow mb-4';
+                  experienceItem.innerHTML = `
+                    <h3 class="text-lg font-medium">${exp.title}</h3>
+                    <p class="text-gray-600">${exp.company} | ${exp.startDate} - ${exp.endDate}</p>
+                    <ul class="list-disc ml-6">
+                      ${exp.responsibilities.map(res => `<li>${res}</li>`).join('')}
+                    </ul>
+                  `;
+                  experienceSection.appendChild(experienceItem);
+                });
               });
-            });
-          </script>
-        </div>
-      </section>  
+            </script>
+          </div>
+        </section>
+    
+
+      </div>
+    </div>
 
   </div>
 

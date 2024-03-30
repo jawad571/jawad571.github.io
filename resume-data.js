@@ -114,7 +114,7 @@ const resumeData = {
         "responsibilities": [
           "Designed architecture for a private cloud that offers Availability and Partition tolerance.",
           "Implementation using Kubernetes on virtual machines provisioned and managed via Vagrant.",
-          "Connected redis for to the application pods to create a shared state",
+          "Connected redis to the application pods to create a shared state",
           "Deployed a whiteboard web application on the cloud to offer eventual consistency.",
         ]
       },
