@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="../../solid_color.png" type="image/png">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>Distributed Private Cloud</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f5f5f5;
+        }
+        .article-container {
+            text-align: center;
+            max-width: 800px;
+            width: 90%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .article {
+            margin: 0 auto;
+            text-align: left;
+        }
+        .article img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+		p {
+			line-height: 1.8;
+		}
+		.title {
+			font-size: 50px;
+			font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+		}
+    </style>
+</head>
+<body>
+    <div class="article-container">
+        <div class="article">
+            <h1 class="title">Distributed Whiteboard Application on Private Cloud</h1>
+			<p class="text-muted">Jawad Mustafa - May 2, 2024</p>
+            <img src="distributedSystems.jpg" alt="Article Image">
+			<h1 id="introduction">Introduction</h1>
+			<p>
+			  This article will take the reader on a journey of the development to
+			  deployment of a distributed whiteboard application on a tailored private
+			  cloud. The reader will get to learn about the design thinking, decision
+			  methods, implementation details, and a critical review of the project.
+			<br />	
+			  <a href="https://github.com/konsabertooth/whiteboard" target="_blank">Github Code for Whiteboard App</a>
+			<br />	
+			  <a href="https://github.com/jawad571/whiteboard_cloud" target="_blank">Github Code for Kubernetes Deployment</a>
+			</p>
+			<h1 id="design-and-technological-choices-for-the-private-cloud">
+			  Design and Technological Choices for the private cloud
+			</h1>
+			<h2 id="philosophy-of-the-design">Philosophy of the Design</h2>
+			<p>
+			  The motivation for the design is to create a distributed system that is
+			  easier to scale and provides high availability. The philosophy of our
+			  design is that of a "BASE" system, where "BASE" stands for:
+			</p>
+			<ul>
+			  <li>
+				<p>
+				  Basic Availability: The application and its data is available across
+				  multiple nodes, making it fault tolerant.
+				</p>
+			  </li>
+			  <li>
+				<p>
+				  Soft state: The state of the system is changeable with respect to
+				  time. Due to this ease on consistency, the system is easily scalable
+				  without much networking and computational overhead.
+				</p>
+			  </li>
+			  <li>
+				<p>
+				  Eventual Consistency: The system provides room for a window of
+				  inconsistency but eventually achieves a consistent state.
+				</p>
+			  </li>
+			</ul>
+			<p>
+			  The reason for choosing a BASE system is that in case of a whiteboard
+			  application, the user experience will not be significantly affected by a
+			  small window of inconsistency. For example, two users "A" and "B" are
+			  having a discussion on Quantum Mechanics. User "A" writes Schrodinger’s
+			  equation on the board, and user "B" received it 5 seconds later. This will
+			  not cause serious performance issues or critical faults. Therefore, a
+			  sacrifice on part of consistency will enable us to build a cloud that is
+			  easily scalable and highly available.
+			</p>
+			<p>
+			  In light of the "CAP" theorem, we are aiming to offer "AP"; Avaialability
+			  and Partition tolerance.
+			</p>
+			<h2 id="the-design-and-technological-choices">
+			  The Design and Technological Choices
+			</h2>
+			<p>
+			  The architecture diagram below provides an overview of the architecture of
+			  the private cloud and how it could host a whiteboard application on it.
+			  Bear in mind, that the cloud has been tailored in such a way that it best
+			  suits the needs of the whiteboard application.
+			</p>
+			<figure>
+			  <img
+				src="cloud_architecture (1).jpg"
+				alt="Cloud Architecture Diagram"
+				id="fig:enter-label"
+				style="width: 90%"
+			  />
+			</figure>
+			<h3 id="network-topology">Network Topology</h3>
+			<p>
+			  The cloud is divided into two major network segments, the public and
+			  private subnets. The user can access the private subnet via the network
+			  bridge, that connects him to the private network. Inside the private
+			  network, are provisioned three virtual machines that have been
+			  interconnected via NAT gateway to form an internal network for the virtual
+			  machines to communicate through. The traffic is mostly ’EAST-WEST’ in this
+			  region.
+			</p>
+			<h3 id="container-orchestration-and-consensus">
+			  Container Orchestration and Consensus
+			</h3>
+			<p>
+			  As mentioned in the philosophy of the architecture, we are aiming for a
+			  distributed environment. Stateless compute is the best suited component
+			  for a distributed system. Therefore, we have chosen kubernetes for
+			  container orchestration where the application pods contain standalone
+			  stateless backend application for whiteboard to avoid any coupling between
+			  the distributed containers.
+			</p>
+			<p>
+			  The application pods are distributed over the three nodes; Master node,
+			  worker node 1, and worked node 2, in a replica set. In addition to that,
+			  there is a redis pod which is responsible for maintaining the state of the
+			  application. Each pod writes its state on its own machine, and after every
+			  5 seconds communicates that to the redis pod and makes its state
+			  consistent with that of redis. This enables eventual consistency in the
+			  system.
+			</p>
+			<p>
+			  Kubernetes does the heavy lifting of ensuring that traffic is directly to
+			  healthy routes. For ensuring consensus, Kubernetes uses the Raft Consensus
+			  algorithm <span class="citation" data-cites="Website2023"></span>.
+			  Kubernetes deploys a cluster of etcd nodes. Each etcd node is part of the
+			  cluster and maintains a copy of the distributed key-value store. The etcd
+			  nodes use the Raft consensus algorithm to achieve consensus on the state
+			  of the distributed key-value store. Raft ensures that all nodes in the
+			  cluster agree on the current state and can recover from the failure of
+			  some nodes.
+			</p>
+			<h3 id="disaster-recovery">Disaster Recovery</h3>
+			<p>
+			  The snapshots of the virtual machines should be saved to ensure easy
+			  recovery in case of a disaster. New virtual machines can be instantly spun
+			  up, ensuring high availability.
+			</p>
+			<h1 id="implementation-details">Implementation Details</h1>
+			<h2 id="available-options">Available Options</h2>
+			<p>
+			  The opportunity to implement the private cloud proposed in the previous
+			  section was offered by many platforms. However, the following key factors
+			  were used to determine which platform to use:
+			</p>
+			<ul>
+			  <li><p>Cost</p></li>
+			  <li><p>Resources</p></li>
+			  <li><p>Learning Curve</p></li>
+			</ul>
+			<p>
+			  The two most popular options; AWS and Azure, checked on the last two
+			  items; Resources and Learning cover, however, they proved to be costly.
+			  The free tier version was too limited to experiment with multiple options
+			  and gave very less flexibility.
+			</p>
+			<p>
+			  On the contrary, tools like openstack and microstack were handy in terms
+			  of cost because they are open source, but they lacked in the other two
+			  dimensions. The minimum requirement for openstack was 16gbs ram, 4vCPUs
+			  and 50GBs of SSD storage. Having a steep learning curve, openstack only
+			  checked the Cost factor.
+			</p>
+			<h2 id="unsuccessful-attempts">Unsuccessful Attempts</h2>
+			<p>
+			  We tried implementing using openstack by optimizing the usage of our
+			  hardware resources, but still we weren’t able to produce positive results.
+			  Similarly, we also tried using AWS EKS to host the architecture, but the
+			  free-tier version provided us with very limited flexibility.
+			</p>
+			<h2 id="making-a-choice">Making a choice</h2>
+			<p>
+			  On the other hand, Kubernetes checked two factors; Cost and Resources.
+			  Kubernetes is an open source cloud orchestration platform, that can be
+			  deployed on any VM. We used virtualbox to deploy the virtual machines
+			  required for the deployment of the cluster. The reason for using
+			  virtualbox, a type 2 hypervisor, over any other type 1 hypervisor is that
+			  it is more robust and easy to setup on most of the operating systems. This
+			  enables easier communication amongst group members and sped up the
+			  development process.
+			</p>
+			<p>
+			  Vagrant was used to provision the virtual machine and to create the
+			  network topology. The reason behind using vagrant was to make sure it is
+			  easier to automate the workflow and reduce human intervention when it
+			  comes to spinning up more instances. Another selling point of Vagrant is
+			  that it allows you to store snapshots that could be used for disaster
+			  recovery.
+			</p>
+			<h2 id="the-implementation">The Implementation</h2>
+			<p>
+			  All the deployment related files can be found in the following git
+			  repository
+			  <span class="citation" data-cites="WhiteboardCloudGitRepo"></span>
+			</p>
+			<h3 id="network-topology-1">Network Topology</h3>
+			<p>
+			  The configuration for the network topology was setup in the Vagrant file.
+			  This included installation of NAT gateways on each virtual machine to
+			  enable inter-nodal communication. Additionally, port forwarding is enabled
+			  on port 22 so we could ssh into the virtual machines. Later on, we just
+			  forwarded port using the virtualbox User Interface on need bases.
+			</p>
+			<h3 id="cluster-deployment">Cluster Deployment</h3>
+			<p>
+			  After that, on the master node, kubernetes cluster’s deployment is set up.
+			  The deployment.yaml file below is used.
+			</p>
+			<figure>
+				<img
+				src="deployment.png"
+				alt="Deployment.yaml"
+				id="fig:deployment"
+				style="width: 50%"
+				/>
+				<figcaption>deployment.yaml<span label="fig:deployment"></span></figcaption>
+			</figure>
+			<p>
+			  The two noteworthy mentions about the deployment file are the "replicas"
+			  and "image" keys. In the former, we can specify the replica sets. The
+			  number of replicas is proportional to the number of users, so they could
+			  be increased with minimal human intervention. Secondly, the "image" key
+			  holds the dockerhub image of our whiteboard application.
+			</p>
+			<p>
+			</p>
+			<p>
+			The latest redis image is depoyed by creating a deployment and exposed using a service. Inorder to inject the environment varialbes, that contain the IP address
+			  of redis pod as well, a config map is created which is attached to the deployment.yaml.
+			</p>
+			<figure>
+			  <img
+				src="redis-pod.png"
+				alt="redis-pod.yaml"
+				id="fig:redis-pod"
+				style="width: 50%"
+			  />
+			  <figcaption>redis-pod.yaml<span label="fig:redis-pod"></span></figcaption>
+			</figure>
+			<figure>
+			  <img
+				src="redis-service.png"
+				alt="redis-service.yaml"
+				id="fig:redis-service"
+				style="width: 50%"
+			  />
+			  <figcaption>
+				redis-service.yaml<span label="fig:redis-service"></span>
+			  </figcaption>
+			</figure>
+			<h3 id="deployment-of-a-newer-version-of-the-application">
+			  Deployment of a newer version of the application
+			</h3>
+			<p>
+			  If you want to deploy a new application version, all you have to do it
+			  change the tag of the image name in deployment.yaml file and redeploy
+			  using "kubectl apply -f deployment.yaml" on the master node.
+			</p>
+			<h3 id="workflow">Workflow</h3>
+			<p>
+			  Whenever the user connects, he is directed to a healthy pod by the
+			  kubernetes load balancer. Inorder to achieve eventual consistency, each
+			  node updates itself with redis’s state every 5 seconds. This delay ensures
+			  that the network overhead is reduced. While it increases network latency,
+			  but that has minimal impact on user experience as explained in the
+			  philosophy of the design section.
+			</p>
+			<h3 id="monitoring">Monitoring</h3>
+			<p>
+			  For the monitoring of the cluster, we have used Prometheus. Prometheus is
+			  an open-source tool that seamlessly deploys on kubernetes and provides
+			  insight into serveral factors including but not limited to compute, memory
+			  usage and network utilization of the pods. Additionally, it also provides
+			  with alerts regarding the health of pods. You can find an example of
+			  network monitoring in Figure <a
+				href="#fig:prometheus-networking"
+				data-reference-type="ref"
+				data-reference="fig:prometheus-networking"
+				>5</a
+			  >.
+			</p>
+			<figure>
+			  <img
+				src="prometheus_network.png"
+				alt="Prometheus Network Monitoring"
+				id="fig:prometheus-networking"
+				style="width: 90%"
+			  />
+			  <figcaption>
+				Prometheus Network Monitoring<span
+				  label="fig:prometheus-networking"
+				></span>
+			  </figcaption>
+			</figure>
+			<h1 id="whiteboard-application-design">Whiteboard Application Design</h1>
+			<h2 id="key-features">Key Features</h2>
+			<p>The whiteboard application offers the following features:</p>
+			<ul>
+			  <li><p>Multiple users can join the session to see the same state</p></li>
+			  <li>
+				<p>
+				  Users can use basic drawing features such as pencil and line, as well
+				  as draw shapes
+				</p>
+			  </li>
+			  <li><p>Users can view each other’s progress in real-time</p></li>
+			</ul>
+			<h2 id="architecture">Architecture</h2>
+			<p>
+			  As you can see in Figure <a
+				href="#fig:whiteboard-architecture"
+				data-reference-type="ref"
+				data-reference="fig:whiteboard-architecture"
+				>6</a
+			  >, it is a 2-tier architecture based on client and server. The server
+			  hosts the socket to enable users to make connections. Apart from that, it
+			  is also a host to the redis client which in turn connects to redis
+			  service. A timed process is setup inside express framework that ensures
+			  that updates are retrieved and sent to redis every 5 seconds.
+			</p>
+			<h2 id="resource-lock">Resource Lock</h2>
+			<p>
+			  Inorder to ensure that only one node writes at a time on redis server, a
+			  resource lock is initiated before a node makes a transaction. Once the
+			  transaction is complete, the lock is released. There is a timeout set to
+			  the lock to avoid a deadlock.
+			</p>
+			<figure>
+			  <img
+				src="whiteboard_architecture.jpeg"
+				alt="whiteboard architecture"
+				id="fig:whiteboard-architecture"
+				style="width: 50%"
+			  />
+			  <figcaption>
+				whiteboard architecture<span label="fig:whiteboard-architecture"></span>
+			  </figcaption>
+			</figure>
+			<h2 id="techstack">Techstack</h2>
+			<h3 id="backend">Backend</h3>
+			<p>
+			  Node and Express (JS) are used to create APIs and sockets on the server
+			  side. The reason behind choosing the aforementioned is that they are
+			  developer friendly and once we make this opensource, we can have a bigger
+			  community of developer working on it. Additionally, it has a shallower
+			  learning curve, as it enables us to produce an all javascript application;
+			  from frontend to the backend.
+			</p>
+			<h3 id="frontend">Frontend</h3>
+			<p>
+			  We have used Vite to develop the frontend of the application. The frontend
+			  can be bundled and deployed anywhere, even on serverless services like AWS
+			  s3, Vercel or github pages. Deployment of the frontend is beyond the scope
+			  of this project.
+			</p>
+			<h1 id="demonstration">Demonstration</h1>
+			<h2 id="group-video-link">Group Video link</h2>
+			<p>
+			  To watch the group presentation, click here or paste the following link in
+			  your browser:<br />
+			  <a
+				href="https://www.youtube.com/watch?v=wTe2ul7Iork" target="_blank"
+				>presentation</a
+			  >
+			</p>
+			<h1 id="critical-review">Critical Review</h1>
+			<h2 id="strengths-and-weaknesses">Strengths and Weaknesses</h2>
+			<p>
+			  The distributed whiteboard application can host a high number of users
+			  because of its ability to distribute the load onto three nodes.
+			  Additionally, due to controlled communication between nodes, the network
+			  overhead has been reduced and thus, making the application scalable. For
+			  example, due to the 5s delay the redis server has to deal with 240 
+			  requests per minute; (60/5 * 2 * 10 = 240), where (60/delay_in_seconds) gives you
+			  the number of <strong>updates per minute</strong>. We multiply that by 2
+			  because each update requires one read transaction and one write
+			  transaction. At the end, we multiply it with the number of nodes "n".
+			  Consider the following example:
+			</p>
+			<p>
+			  1. When <span class="math inline"><em>n</em> = 10</span> and the delay in
+			  seconds is 5:
+			</p>
+			<p>
+			  <br /><span class="math display"
+				>$$\text{Value} = \frac{60}{5} \times 2 \times 10 = 12 \times 2 \times
+				10 = 240$$</span
+			  ><br />
+			</p>
+			<p>
+			  2. When <span class="math inline"><em>n</em> = 10</span> and the delay in
+			  seconds is 1:
+			</p>
+			<p>
+			  <br /><span class="math display"
+				>$$\text{Value} = \frac{60}{1} \times 2 \times 10 = 120 \times 10 =
+				1200$$</span
+			  ><br />
+			</p>
+			<p>
+			  As you can observe, that increasing the delay has had a positive impact on
+			  making the application more scalable by reducing the number of reads and
+			  writes.
+			</p>
+			<p>
+			  Another strength of our application is the fact that Kubernetes is an open
+			  source container orchestration tool, which has opened the possibility of a
+			  wide developer community to collaborate on the project and make
+			  improvements.
+			</p>
+			<p>
+			  On the downside, there are certain things that could have been better.
+			  Firstly, our application is distributed but not decentralized. There is
+			  still one master node where all the updates are eventually written. We
+			  couldn’t have implemented it because of hardware limitations. Secondly,
+			  the deployment of the application is not automated, nor is the monitoring
+			  set to update about automated alerts. Thirdly, user session is not saved
+			  in a persistent database and therefore there is no user authentication
+			  system.
+			</p>
+			<h2 id="improvements-and-future-work">Improvements and Future Work</h2>
+			<p>
+			  In order to take this project one step further, the following steps could
+			  be taken:
+			</p>
+			<ul>
+			  <li>
+				<p>
+				  Use a resourceful server to create a distributed replica set for
+				  master node using atleast two nodes, and design a consensus mechanism
+				  to ensure they stay updated with each other’s state.
+				</p>
+			  </li>
+			  <li>
+				<p>
+				  Use Github actions to automate the deployment process by initiating
+				  automatic build upon pushing on the main branch.
+				</p>
+			  </li>
+			  <li>
+				<p>
+				  Create a database that is external from the kubernetes cluster. This
+				  to ensure separation of concerns so that the data is secure and safe
+				  in a separate isolated environment. Write a cron job to read data from
+				  redis and update in the database every hour. Make sure, that users are
+				  directly registered to the database, because we cannot afford a delay
+				  in the registration and signin of users.
+				</p>
+			  </li>
+			  <li>
+				<p>
+				  If you want to go a step further, deploy openstack on the latest
+				  Raspberry Pi, and use kubernetes to orchestrate the container network
+				  on it. This way you will be able to build another layer of abstraction
+				  over Vagrant.
+				</p>
+			  </li>
+			  <li>
+				<p>
+				  An optimization of the private cloud to speed up compute and improve
+				  network latency is to use a type-1 hypervisor like KVM. This would
+				  affect the flexibility but would give you a higher performing cloud.
+				</p>
+			  </li>
+			</ul>
+			<h1 id="conclusion">Conclusion</h1>
+			<p>
+			  In this project article, we looked at end to end development and deployment
+			  of a distributed whiteboard application. It involved an in depth insight
+			  regarding the design thinking used to implement the solution, and at the
+			  very end we evaluated possible improvements in future and how we could
+			  start with them. To conclude, a distributed whiteboard application can
+			  prove to be more scalable and available as compared to a whiteboard
+			  application hosted on a single consolidated server.
+			</p>
+        </div>
+    </div>
+</body>
+</html>

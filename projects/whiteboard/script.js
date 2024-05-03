@@ -1,0 +1,3 @@
+const title = "Distributed Whiteboard Application on Private Cloud"
+const subtitle = "May 2024"
+const description = "The reason for choosing a BASE system is that in case of a whiteboard application, the user experience will not be significantly affected by a small window of inconsistency. For example, two users A and B are having a discussion on Quantum Mechanics. User A writes Schrodinger's equation on the board, and user B received it 5 seconds later. This will not cause serious performance issues or critical faults. Therefore, a sacrifice on part of consistency will enable us to build a cloud that is easily scalable and highly available.In light of the CAP theorem, we are aiming to offer AP; Avaialability and Partition tolerance."

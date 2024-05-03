@@ -108,6 +108,7 @@ const resumeData = {
     "projects": [
       {
         "title": "Distributed Private Cloud",
+        "link": "projects/whiteboard/index.html",
         "company": "University of Leicester",
         "startDate": "Oct 2023",
         "endDate": "Dec 2023",
@@ -123,6 +124,7 @@ const resumeData = {
         "company": "ROBINHOOD ARMY (RHA) & IBA KARACHI",
         "startDate": "Aug 2021",
         "endDate": "Jun 2022",
+        "link": "https://github.com/RHAPakistan",
         "responsibilities": [
           "Developed 3 client-side and 1 server-side applications to automate leftover food distribution process.",
           "Developed a lightweight application to reduce cost for the NGO.",
