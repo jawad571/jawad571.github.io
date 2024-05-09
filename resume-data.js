@@ -13,7 +13,10 @@ const resumeData = {
         "graduationYear": "September 2024",
         "description": [`Relevant Coursework: Advanced Web Technologies, Agile Cloud Automation, Internet and Cloud
         Computing, Big Data and Predictive Analytics, Foundations of Cybersecurity, Generative Development,
-        Service-Oriented Architectures.`]
+        Service-Oriented Architectures.`,
+        `Extracurricular: Working on an ongoing research project on “Model-Driven-Reverse-Engineering”
+        alongside a professor and his team.`
+      ]
       },
       {
         "degree": "BSc, Computer Science",
