@@ -204,12 +204,12 @@ const resumeData = {
     ]    
 }
 
-console.log(JSON.stringify({
-  "name":name,
-  "title": title,
-  "email":email,
-  "phone": phone,
-  "linkedin": linkedin,
-  "github": github,
-  "resumeData": resumeData
-}))
+// console.log(JSON.stringify({
+//   "name":name,
+//   "title": title,
+//   "email":email,
+//   "phone": phone,
+//   "linkedin": linkedin,
+//   "github": github,
+//   "resumeData": resumeData
+// }))
