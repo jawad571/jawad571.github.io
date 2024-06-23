@@ -33,24 +33,16 @@ const resumeData = {
       {
         "title": "Software Engineer II",
         "company": "10 PEARLS",
-        "startDate": "June 2023",
+        "startDate": "June 2022",
         "endDate": "September 2023",
         "responsibilities": [
           "Reviewed Pull Requests daily to ensure timely delivery of the bi-weekly release.",
-          "Responsible for deploying code on the End to End (E2E) environment at the end of every release for functional testing.",
-          "Create or edit APIs as per the need of the task at hand.",
-          "Pick up at least 2 high-priority defects and tickets related to new features to meet the client’s needs in every release."
-        ]
-      },
-      {
-        "title": "Associate Software Engineer",
-        "company": "10 PEARLS",
-        "startDate": "June 2022",
-        "endDate": "June 2023",
-        "responsibilities": [
+          "Automated the execution of End to End (E2E) tests to generate swift project health reports for the client.",
+          "Timely created REST APIs and their handlers on frontend to ensure smooth release of new features.",
+          "Resolved 2+ high priority defects and tickets related to new features to meet client’s needs in every release.",
           "Enhanced code efficiency by refactoring and optimizing data pre-processing operations.",
           "Played a key role in the development, maintenance, and enhancement of the ML pipeline, while automating the Model training process to achieve a remarkable reduction of 2 hours in training time.",
-          "Created a comprehensive back-testing framework from the ground up for the recommendation engine, enabling in-depth comparative analysis following each version update."
+          "Created a comprehensive back-testing framework from the ground up for the recommendation engine enabling in-depth comparative analysis following each version update.",
         ]
       },
       {
@@ -109,6 +101,30 @@ const resumeData = {
       }      
     ],
     "projects": [
+      {
+        "title": "IDE agnostic Structural Model Comparison Tool",
+        "link": "",
+        "company": "MDRE",
+        "startDate": "Feb 2024",
+        "endDate": "Present",
+        "responsibilities": [
+          "The recent advancements in the field of Model Driven Reverse Engineering calls for model comparison tools that help effectively gauge the capabilities of reverse engineering tools. This industry-ready tool with help facilitate research in MDRE and make software versioning simpler for the industry.",
+          "Orchestration using Kubernetes to ensure scalability.",
+          "2 Springboot based services to utilize EMF API for syntactic comparison and 1 Python-based service for semantic comparison"
+        ]
+      },
+      {
+        "title": "Garage Website",
+        "link": "https://snr-autos.vercel.app/",
+        "company": "SNR Autos",
+        "startDate": "March 2024",
+        "endDate": "April 2024",
+        "responsibilities": [
+          "Development of a static frontend using vanilla js + html + css showcasing the services of the newly opened garage",
+          "Deployment using Vercel.",
+          "Integration with CRM."
+        ]
+      },
       {
         "title": "Distributed Private Cloud",
         "link": "projects/whiteboard/index.html",
