@@ -1,215 +1,85 @@
-const name = "Jawad Mustafa"
-const title = "Software Engineer"
-const email = "jawadmustafa571@gmail.com"
-const phone = "+(44) 7774271237"
-const linkedin = "https://www.linkedin.com/in/jawad57/"
-const github = "https://github.com/jawad571"
+const profile = {
+  name: "Jawad Mustafa",
+  role: "Software Architect at Oalta",
+  location: "Tallinn, Estonia",
+  email: "jawadmustafa571@gmail.com",
+  links: {
+    GitHub: "https://github.com/jawad571",
+    LinkedIn: "https://www.linkedin.com/in/jawad57/",
+    ORCID: "https://orcid.org/0009-0002-0979-6458"
+  },
+  lede: "I build and run distributed backend systems, and I'm interested in how we can trust them: verifying the state, outputs and changes that cloud systems produce.",
+  about: "I own DevOps and compliance (SOC 2, GDPR, HIPAA) at Oalta, and have spent four years shipping backends, Kubernetes infrastructure and ML pipelines. Alongside industry work I do research in model-driven reverse engineering, with a focus on validating LLM-generated artifacts against deterministic baselines."
+};
 
 const resumeData = {
-    "education": [
-      {
-        "degree": "MSc, Advanced Computer Science.",
-        "university": "UNIVERSITY OF LEICESTER",
-        "graduationYear": "September 2024",
-        "description": [`Relevant Coursework: Advanced Web Technologies, Agile Cloud Automation, Internet and Cloud
-        Computing, Big Data and Predictive Analytics, Foundations of Cybersecurity, Generative Development,
-        Service-Oriented Architectures.`,
-        `Extracurricular: Working on an ongoing research project on “Model-Driven-Reverse-Engineering”
-        alongside a professor and his team.`
-      ]
-      },
-      {
-        "degree": "BSc, Computer Science",
-        "university": "IBA-KARACHI",
-        "graduationYear": "August 2022",
-        "description": [
-          "Completed General Electives: Introduction to Comparative Politics, Introduction to Differential Equations, Optimization Techniques.",
-          "Completed Domain Electives: Introduction to Robotics, Network Security, Cloud Computing, System Modeling and Simulation, Introduction to Data Mining, Enterprise Resource Planning.",
-          "Diverse elective courses helped broaden my knowledge and skills."
-        ]
-      }
-    ],
-    "experience": [
-      {
-        "title": "Software Engineer II",
-        "company": "10 PEARLS",
-        "startDate": "June 2022",
-        "endDate": "September 2023",
-        "responsibilities": [
-          "Reviewed Pull Requests daily to ensure timely delivery of the bi-weekly release.",
-          "Automated the execution of End to End (E2E) tests to generate swift project health reports for the client.",
-          "Timely created REST APIs and their handlers on frontend to ensure smooth release of new features.",
-          "Resolved 2+ high priority defects and tickets related to new features to meet client’s needs in every release.",
-          "Enhanced code efficiency by refactoring and optimizing data pre-processing operations.",
-          "Played a key role in the development, maintenance, and enhancement of the ML pipeline, while automating the Model training process to achieve a remarkable reduction of 2 hours in training time.",
-          "Created a comprehensive back-testing framework from the ground up for the recommendation engine enabling in-depth comparative analysis following each version update.",
-        ]
-      },
-      {
-        "title": "Research Assistant",
-        "company": "IBA KARACHI",
-        "startDate": "October 2021",
-        "endDate": "January 2022",
-        "responsibilities": [
-          "Revamped and expanded the capabilities of the chatbot at Devaj, resulting in improved functionality and enhanced user experience.",
-          "Led the successful migration of the bot from RASA to core Python, optimizing server resources."
-        ]
-      },
-      {
-        "title": "Software Intern",
-        "company": "DEVAJ TECHNOLOGY",
-        "startDate": "June 2021",
-        "endDate": "October 2021",
-        "responsibilities": [
-          "Conducted a comparative analysis of 2 chatbot frameworks | RASA | Dialogue Flow.",
-          "Implemented voice recognition functionality into the chatbot, enabling it to effectively respond to user voicemails.",
-          "Migrated the MVP from in-house server to AWS EC2 to ensure high availability.",
-          "The newly developed chatbot could potentially increase sales due to easy accessibility for customers."
-        ]
-      },
-    ],
-    "volunteerWork": [
-      {
-        "title": "Research Intern",
-        "company": "YOUTH CENTER FOR RESEARCH (YCR)",
-        "startDate": "Jun 2019",
-        "endDate": "Sept 2019",
-        "responsibilities": [
-          "Surveyed whether the curriculum followed by 5 major universities of Pakistan includes focus on sustainability.",
-          "Suggested evaluation methods to gauge whether the future professionals are well informed about sustainable practices."
-        ]
-      },
-      {
-        "title": "Teaching Volunteer",
-        "company": "ROBINHOOD ARMY (RHA)",
-        "startDate": "Jun 2019",
-        "endDate": "Jul 2019",
-        "responsibilities": [
-          "Taught science subjects to a class of 15 students under 12 years of age.",
-          "Instilled the interest of mathematics, physics, and astronomy in the students, sparking their curiosity."
-        ]
-      },
-      {
-        "title": "Volunteer",
-        "company": "SINDH INSTITUTE OF UROLOGY AND TRANSPLANTATION (SIUT)",
-        "startDate": "Dec 2015",
-        "endDate": "Jan 2016",
-        "responsibilities": [
-          "Handled the patient complaints in the waiting room and presented possible solutions to my group leader.",
-          "Responsible for giving direction to the newcomers in the hospital."
-        ]
-      }      
-    ],
-    "projects": [
-      {
-        "title": "IDE agnostic Structural Model Comparison Tool",
-        "link": "",
-        "company": "MDRE",
-        "startDate": "Feb 2024",
-        "endDate": "Present",
-        "responsibilities": [
-          "The recent advancements in the field of Model Driven Reverse Engineering calls for model comparison tools that help effectively gauge the capabilities of reverse engineering tools. This industry-ready tool with help facilitate research in MDRE and make software versioning simpler for the industry.",
-          "Orchestration using Kubernetes to ensure scalability.",
-          "2 Springboot based services to utilize EMF API for syntactic comparison and 1 Python-based service for semantic comparison"
-        ]
-      },
-      {
-        "title": "Garage Website",
-        "link": "https://snr-autos.vercel.app/",
-        "company": "SNR Autos",
-        "startDate": "March 2024",
-        "endDate": "April 2024",
-        "responsibilities": [
-          "Development of a static frontend using vanilla js + html + css showcasing the services of the newly opened garage",
-          "Deployment using Vercel.",
-          "Integration with CRM."
-        ]
-      },
-      {
-        "title": "Distributed Private Cloud",
-        "link": "projects/whiteboard/index.html",
-        "company": "University of Leicester",
-        "startDate": "Oct 2023",
-        "endDate": "Dec 2023",
-        "responsibilities": [
-          "Designed architecture for a private cloud that offers Availability and Partition tolerance.",
-          "Implementation using Kubernetes on virtual machines provisioned and managed via Vagrant.",
-          "Connected redis to the application pods to create a shared state",
-          "Deployed a whiteboard web application on the cloud to offer eventual consistency.",
-        ]
-      },
-      {
-        "title": "Leftover Food Delivery Application",
-        "company": "ROBINHOOD ARMY (RHA) & IBA KARACHI",
-        "startDate": "Aug 2021",
-        "endDate": "Jun 2022",
-        "link": "https://github.com/RHAPakistan",
-        "responsibilities": [
-          "Developed 3 client-side and 1 server-side applications to automate leftover food distribution process.",
-          "Developed a lightweight application to reduce cost for the NGO.",
-          "Integrated sockets to ensure that users receive real-time updates."
-        ]
-      }
-    ],
-    "honorsAndAwards": [
-      {
-        "title": "Science and Engineering International UG Merit Scholarship",
-        "company": "University of Leicester",
-        "startDate": "2023",
-        "endDate": "2023",
-        "responsibilities": []
-      },
-      {
-        "title": "Dean’s List",
-        "company": "IBA",
-        "startDate": "2022",
-        "endDate": "2022",
-        "responsibilities": []
-      },
-      {
-        "title": "100 percent merit scholarship",
-        "company": "Sindh Endowment",
-        "startDate": "2020",
-        "endDate": "2020",
-        "responsibilities": []
-      },
-      {
-        "title": "100 percent merit scholarship",
-        "company": "Whales College",
-        "startDate": "2018",
-        "endDate": "2018",
-        "responsibilities": []
-      },
-      {
-        "title": "Delivered Opening Address for Freshers",
-        "company": "Whales College",
-        "startDate": "2018",
-        "endDate": "2018",
-        "responsibilities": []
-      },
-      {
-        "title": "1st position",
-        "company": "Speech competition",
-        "startDate": "2017",
-        "endDate": "2017",
-        "responsibilities": []
-      },
-      {
-        "title": "Valedictorian",
-        "company": "Shahwilayat Public School",
-        "startDate": "2016",
-        "endDate": "2016",
-        "responsibilities": []
-      }
-    ]    
-}
-
-// console.log(JSON.stringify({
-//   "name":name,
-//   "title": title,
-//   "email":email,
-//   "phone": phone,
-//   "linkedin": linkedin,
-//   "github": github,
-//   "resumeData": resumeData
-// }))
+  publications: [
+    {
+      title: "Measure What Survives: When Model Vocabulary Outlives Generated Code",
+      authors: "",
+      venue: "",
+      year: "2026",
+      link: ""
+    },
+    {
+      title: "MDRE-LLM: A Tool for Analyzing and Applying LLMs in Software Reverse Engineering",
+      authors: "",
+      venue: "SANER 2025, Tool Track",
+      year: "2025",
+      link: "https://figshare.le.ac.uk/articles/journal_contribution/MDRE-LLM_A_Tool_for_Analyzing_and_Applying_LLMs_in_Software_Reverse_Engineering/28184441"
+    }
+  ],
+  experience: [
+    { title: "Software Architect", org: "Oalta Services", place: "Tallinn", dates: "Apr 2026 – present", points: [
+      "Own DevOps and ensure SOC 2, GDPR and HIPAA compliance across infrastructure and code for every project.",
+      "Set guardrails for using AI in software delivery; lead technical discussions and demos with clients."
+    ]},
+    { title: "Senior Software Engineer", org: "University of Leicester", place: "Leicester", dates: "May 2025 – Apr 2026", points: [
+      "Migrated P-STEP, a healthcare app for people with long-term conditions, from Jetpack Compose to Kotlin Multiplatform.",
+      "Integrated wearable devices through the Terra API."
+    ]},
+    { title: "Senior Software Engineer (contract)", org: "Jeeny", place: "Riyadh, remote", dates: "Sep 2024 – Apr 2026", points: [
+      "Built a new B2B portal in React/TypeScript and a NestJS service bridging it to the core API.",
+      "Helped sign three clients for the new vertical, worth about $300k in annual revenue."
+    ]},
+    { title: "Tech Lead", org: "Brandpa", place: "Remote", dates: "Apr – Sep 2024", points: [
+      "Led two developers building <a href=\"https://mosaicbeat.com/\">MosaicBeat</a>, a tech news delivery system.",
+      "Ran Flask microservices and crawlers on Kubernetes (MicroK8s on EC2), connected through a Redis queue."
+    ]},
+    { title: "Software Engineer II", org: "10Pearls", place: "Karachi", dates: "Jun 2022 – Sep 2023", points: [
+      "Automated model training in the ML pipeline, cutting two hours from each run.",
+      "Built a back-testing framework for the recommendation engine and an AWS CodePipeline CI/CD flow for E2E tests."
+    ]},
+    { title: "Research Assistant", org: "IBA Karachi", place: "Karachi", dates: "Oct 2021 – Jan 2022", points: [
+      "Migrated a production chatbot from RASA to core Python, reducing server load."
+    ]}
+  ],
+  projects: [
+    { title: "Distributed private cloud", link: "projects/whiteboard/index.html", context: "MSc, University of Leicester",
+      text: "An AP-oriented private cloud on Kubernetes over Vagrant-managed VMs, with Redis-backed shared state and an eventually consistent whiteboard app." },
+    { title: "ComparIT", link: "", context: "MSc thesis",
+      text: "An extensible metamodel comparison framework for model-driven reverse engineering research, with hashing-based and raw comparison algorithms and a YAMTL-built evaluation dataset." },
+    { title: "Entrymapper business landscape analyzer", link: "", context: "Led a team of three",
+      text: "Next.js, NestJS/Postgres and a FastAPI RAG service giving an R&D team access to statistical data. I designed the RAG service and backend architecture." },
+    { title: "Leftover food delivery", link: "https://github.com/RHAPakistan", context: "Robinhood Army & IBA Karachi",
+      text: "Three client apps and a server with real-time socket updates, automating food redistribution for an NGO." }
+  ],
+  education: [
+    { degree: "MSc Advanced Computer Science, Distinction (84%)", org: "University of Leicester", dates: "2023 – 2024",
+      note: "Best Student and Best Technical Project on MSc Computer Science. Thesis on model comparison for model-driven reverse engineering." },
+    { degree: "BS Computer Science, CGPA 3.58", org: "IBA Karachi", dates: "2018 – 2022",
+      note: "Dean's List, full merit scholarship." }
+  ],
+  awards: [
+    "Best Student, MSc Computer Science, University of Leicester (2024)",
+    "Best Technical Project, MSc Computer Science, University of Leicester (2024)",
+    "Science and Engineering International Merit Scholarship, University of Leicester (2023)",
+    "Dean's List, IBA Karachi (2022)",
+    "Full merit scholarships, Sindh Endowment (2020) and Whales College (2018)"
+  ],
+  volunteering: [
+    "Research intern, Youth Center for Research: surveyed sustainability in the curricula of five Pakistani universities (2019)",
+    "Teaching volunteer, Robinhood Army: taught science to 15 children (2019)",
+    "Volunteer, Sindh Institute of Urology and Transplantation (2015–16)"
+  ]
+};
