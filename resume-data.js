@@ -8,7 +8,7 @@ const profile = {
     LinkedIn: "https://www.linkedin.com/in/jawad57/",
     ORCID: "https://orcid.org/0009-0002-0979-6458"
   },
-  lede: "I build and run distributed backend systems, and I'm interested in how we can trust them: verifying the state, outputs and changes that cloud systems produce.",
+  lede: "I build and run distributed backend systems on AWS and Kubernetes, and I'm interested in how we can trust them: verifying the state, outputs and changes that cloud systems produce.",
   about: "I own DevOps and compliance (SOC 2, GDPR, HIPAA) at Oalta, and have spent four years shipping backends, Kubernetes and AWS infrastructure, and ML pipelines. Alongside industry work I do research in model-driven reverse engineering, with a focus on validating LLM-generated artifacts against deterministic baselines."
 };
 
