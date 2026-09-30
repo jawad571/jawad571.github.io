@@ -16,14 +16,14 @@ const resumeData = {
   publications: [
     {
       title: "Measure What Survives: When Model Vocabulary Outlives Generated Code",
-      authors: "",
-      venue: "",
+      authors: "Artur Boronat, Jawad Mustafa, Fola-Dami Eyitemi",
+      venue: "MODELS 2026, NIER Track",
       year: "2026",
-      link: ""
+      link: "https://doi.org/10.1145/3822455.3838784"
     },
     {
       title: "MDRE-LLM: A Tool for Analyzing and Applying LLMs in Software Reverse Engineering",
-      authors: "",
+      authors: "Artur Boronat, Jawad Mustafa",
       venue: "SANER 2025, Tool Track",
       year: "2025",
       link: "https://figshare.le.ac.uk/articles/journal_contribution/MDRE-LLM_A_Tool_for_Analyzing_and_Applying_LLMs_in_Software_Reverse_Engineering/28184441"
@@ -57,7 +57,7 @@ const resumeData = {
   projects: [
     { title: "Distributed private cloud", link: "projects/whiteboard/index.html", context: "MSc, University of Leicester",
       text: "An AP-oriented private cloud on Kubernetes over Vagrant-managed VMs, with Redis-backed shared state and an eventually consistent whiteboard app." },
-    { title: "ComparIT", link: "", context: "MSc thesis",
+    { title: "ComparIT", link: "https://com-parit.github.io/", context: "MSc thesis",
       text: "An extensible metamodel comparison framework for model-driven reverse engineering research, with hashing-based and raw comparison algorithms and a YAMTL-built evaluation dataset." },
     { title: "Entrymapper business landscape analyzer", link: "", context: "Led a team of three",
       text: "Next.js, NestJS/Postgres and a FastAPI RAG service giving an R&D team access to statistical data. I designed the RAG service and backend architecture." },
