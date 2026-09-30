@@ -9,7 +9,7 @@ const profile = {
     ORCID: "https://orcid.org/0009-0002-0979-6458"
   },
   lede: "I build and run distributed backend systems, and I'm interested in how we can trust them: verifying the state, outputs and changes that cloud systems produce.",
-  about: "I own DevOps and compliance (SOC 2, GDPR, HIPAA) at Oalta, and have spent four years shipping backends, Kubernetes infrastructure and ML pipelines. Alongside industry work I do research in model-driven reverse engineering, with a focus on validating LLM-generated artifacts against deterministic baselines."
+  about: "I own DevOps and compliance (SOC 2, GDPR, HIPAA) at Oalta, and have spent four years shipping backends, Kubernetes and AWS infrastructure, and ML pipelines. Alongside industry work I do research in model-driven reverse engineering, with a focus on validating LLM-generated artifacts against deterministic baselines."
 };
 
 const resumeData = {
@@ -48,7 +48,7 @@ const resumeData = {
     ]},
     { title: "Software Engineer II", org: "10Pearls", place: "Karachi", dates: "Jun 2022 – Sep 2023", points: [
       "Automated model training in the ML pipeline, cutting two hours from each run.",
-      "Built a back-testing framework for the recommendation engine and an AWS CodePipeline CI/CD flow for E2E tests."
+      "Built a back-testing framework for the recommendation engine and a CI/CD flow for E2E tests on AWS CodeCommit, CodeBuild, CodeDeploy and CodePipeline."
     ]},
     { title: "Research Assistant", org: "IBA Karachi", place: "Karachi", dates: "Oct 2021 – Jan 2022", points: [
       "Migrated a production chatbot from RASA to core Python, reducing server load."
